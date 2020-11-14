@@ -10,22 +10,44 @@ namespace AddressBookSystem
 
             bool flag = true;
 
-            while(flag)
-            {
-                AddressRecord addressRecord = new AddressRecord();
-                AddressDetails addressDetails = new AddressDetails();
+            AddressRecord addressRecord = new AddressRecord();
+            AddressDetails addressDetails = new AddressDetails();
 
+            while (flag)
+            {
+                
                 var contact = addressDetails.UserValue();
                 addressRecord.AddContact(contact);
+
 
                 Console.WriteLine("Do you want to Enter more Y for Yes N for No:\n");
                 char choice = Convert.ToChar(Console.ReadLine());
 
                 if(choice == 'N')
                 {
+                    addressRecord.Display(contact);
                     flag = false;
                 }
                 
+            }
+
+            Console.WriteLine("Enter the Name of Person to Edit\n");
+            string firstName = Console.ReadLine();
+
+            if(addressRecord.contactDetails.ContainsKey(firstName))
+            {
+                var contactToEdit =addressRecord.contactDetails[firstName];
+                addressRecord.Display(contactToEdit);
+
+                Console.WriteLine("Enter the new values");
+                var contact = addressDetails.UserValue();
+                addressRecord.EditContact(firstName, contact);
+                addressRecord.Display(contact);
+            }
+
+            else
+            {
+                Console.WriteLine("No Records Found");
             }
         }
     }
