@@ -5,11 +5,16 @@ using System.Text;
 namespace AddressBookSystem
 {
     public class AddressDetails
-    {
+    { 
         public ContactDetails UserValue()
         {
-
+            ContactDetails contactDetails = new ContactDetails();
             string firstName = Console.ReadLine();
+            if(contactDetails.firstName == firstName)
+            {
+                Console.WriteLine("Duplicate FirstName Values Not Allowed");
+                return null;
+            }
             string lastName = Console.ReadLine();
             string address = Console.ReadLine();
             string city = Console.ReadLine();
