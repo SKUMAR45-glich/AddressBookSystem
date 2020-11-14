@@ -75,6 +75,9 @@ namespace AddressBookSystem
                             addressRecord.SortPersonByName();
                             break;
 
+                        case 6:
+                            addressRecord.SortPersonByCity();
+                            break;
 
                         case 0:
                             flagContact = false;

@@ -72,5 +72,13 @@ namespace AddressBookSystem
                 Console.WriteLine($"Sorted Name {sortByName.Key}");
             }
         }
+
+        public void SortPersonByCity()
+        {
+            foreach (KeyValuePair<string, ContactDetails> sortByCity in contactDetails.OrderBy(key => key.Value.city))
+            {
+                Console.WriteLine($"Sorted Cities {sortByCity.Value.city}");
+            }
+        }
     }
 }
