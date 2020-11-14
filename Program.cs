@@ -31,7 +31,7 @@ namespace AddressBookSystem
                 
             }
 
-            Console.WriteLine("Enter the Name of Person to Edit\n");
+            /*Console.WriteLine("Enter the Name of Person to Edit\n");
             string firstName = Console.ReadLine();
 
             if(addressRecord.contactDetails.ContainsKey(firstName))
@@ -43,6 +43,27 @@ namespace AddressBookSystem
                 var contact = addressDetails.UserValue();
                 addressRecord.EditContact(firstName, contact);
                 addressRecord.Display(contact);
+            }
+
+            else
+            {
+                Console.WriteLine("No Records Found");
+            }
+            */
+
+            Console.WriteLine("Enter FirstName to be deleted\n");
+            Console.WriteLine("Enter the Name of Person to Deleted\n");
+            string firstName = Console.ReadLine();
+
+            if (addressRecord.contactDetails.ContainsKey(firstName))
+            {
+                var contactToDelete = addressRecord.contactDetails[firstName];
+                Console.WriteLine("Data before Deletion");
+                addressRecord.Display(contactToDelete);
+
+                Console.WriteLine("Data After Deletion");
+                addressRecord.DeleteContact(firstName, contactToDelete);
+                addressRecord.Display(contactToDelete);
             }
 
             else

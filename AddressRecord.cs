@@ -32,6 +32,20 @@ namespace AddressBookSystem
             }    
         }
 
+
+        public void DeleteContact(string firstName, ContactDetails contactDetails)
+        {
+            if (!this.contactDetails.ContainsKey(firstName))
+            {
+                Console.WriteLine("Please Enter Correct Name");
+                return;
+            }
+
+            this.contactDetails.Remove(firstName);
+            Console.WriteLine("Deleted Successfully");
+        }
+
+
         public void Display(ContactDetails contactDetails)
         {
             Console.WriteLine($"First Name {contactDetails.firstName}");
