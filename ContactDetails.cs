@@ -35,5 +35,17 @@ namespace AddressBookSystem
             this.phoneNumber = phoneNumber;
             this.email = email;
         }
+
+        public void Display()
+        {
+            Console.WriteLine($"First Name {firstName}");
+            Console.WriteLine($"Last Name {lastName}");
+            Console.WriteLine($"Address {address}");
+            Console.WriteLine($"PhoneNumber {phoneNumber}");
+            Console.WriteLine($"City {city}");
+            Console.WriteLine($"State {state}");
+            Console.WriteLine($"PhoneNumber {phoneNumber}");
+            Console.WriteLine($"Email {email}");
+        }
     }
 }

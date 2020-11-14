@@ -70,11 +70,13 @@ namespace AddressBookSystem
             {
                 if (contact.Value.state == state)
                 {
-                    Console.WriteLine("State is Present");
+                    contact.Value.Display();
+                    Console.WriteLine();
+                    
                 }
                 else
                 {
-                    Console.WriteLine("Wrong State");
+                    Console.WriteLine("Please Enter Correct Value");
                 }
             }
         }
