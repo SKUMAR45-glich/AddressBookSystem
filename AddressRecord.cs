@@ -60,5 +60,23 @@ namespace AddressBookSystem
             Console.WriteLine($"PhoneNumber {contactDetails.phoneNumber}");
             Console.WriteLine($"Email {contactDetails.email}");
         }
+
+
+        public void SeachbyState()
+        {
+            string state = Console.ReadLine();
+
+            foreach (var contact in contactDetails)
+            {
+                if (contact.Value.state == state)
+                {
+                    Console.WriteLine("State is Present");
+                }
+                else
+                {
+                    Console.WriteLine("Wrong State");
+                }
+            }
+        }
     }
 }
