@@ -12,26 +12,20 @@ namespace AddressBookSystem
 
             while(flag)
             {
-                string firstName = Console.ReadLine();
-                string lastName = Console.ReadLine();
-                string address = Console.ReadLine();
-                string city = Console.ReadLine();
-                string state = Console.ReadLine();
-                string phoneNumber = Console.ReadLine();
-                string email = Console.ReadLine();
-                ContactDetails contactDetails = new ContactDetails(firstName,lastName,address,city,state,phoneNumber,email);
-
                 AddressRecord addressRecord = new AddressRecord();
-                addressRecord.AddContact(contactDetails);
+                AddressDetails addressDetails = new AddressDetails();
 
-                Console.WriteLine("Do You Want to Enter More Contacts: Y for Yes N for No");
+                var contact = addressDetails.UserValue();
+                addressRecord.AddContact(contact);
+
+                Console.WriteLine("Do you want to Enter more Y for Yes N for No:\n");
                 char choice = Convert.ToChar(Console.ReadLine());
 
                 if(choice == 'N')
                 {
                     flag = false;
                 }
-
+                
             }
         }
     }
