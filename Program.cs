@@ -68,10 +68,11 @@ namespace AddressBookSystem
                             break;
                             
                         case 4:
-                            addressRecord.SeachbyState();
+                            addressFunction.searchState();
                             break;
 
-                        case 5:
+
+                        case 0:
                             flagContact = false;
                             break;
 

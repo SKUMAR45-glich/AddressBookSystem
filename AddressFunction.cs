@@ -8,7 +8,7 @@ namespace AddressBookSystem
     {
         AddressDetails addressDetails = new AddressDetails();
         AddressRecord addressRecord = new AddressRecord();
-
+        AddressforSearching addressforSearching = new AddressforSearching();
         public void AddContactDetails()
         {
             bool flag = true;
@@ -99,6 +99,18 @@ namespace AddressBookSystem
                     flag = false;
                 }
             }
+        }
+
+        public void searchState()
+        {
+            string state = Console.ReadLine();
+            var values = addressforSearching.contactDetailsInState(state);
+            
+            if(values==null)
+            {
+                Console.WriteLine("No ctact for this state");
+            }
+            Console.WriteLine($"{values.Count} Conatacts are for {state}");
         }
     }
 }

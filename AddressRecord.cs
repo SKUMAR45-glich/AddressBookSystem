@@ -6,8 +6,11 @@ namespace AddressBookSystem
 {
     public class AddressRecord
     {
+        AddressforSearching addressforSearching = new AddressforSearching();
+        
         string addressName;
         public Dictionary<string, ContactDetails> contactDetails = new Dictionary<string, ContactDetails>();
+        public Dictionary<string, List<ContactDetails>> cityContactDetails = new Dictionary<string, List<ContactDetails>>();
         public int totalContacts { get; set; }
 
         public AddressRecord()
@@ -59,26 +62,8 @@ namespace AddressBookSystem
             Console.WriteLine($"State {contactDetails.state}");
             Console.WriteLine($"PhoneNumber {contactDetails.phoneNumber}");
             Console.WriteLine($"Email {contactDetails.email}");
-        }
 
-
-        public void SeachbyState()
-        {
-            string state = Console.ReadLine();
-
-            foreach (var contact in contactDetails)
-            {
-                if (contact.Value.state == state)
-                {
-                    contact.Value.Display();
-                    Console.WriteLine();
-                    
-                }
-                else
-                {
-                    Console.WriteLine("Please Enter Correct Value");
-                }
-            }
+            
         }
     }
 }

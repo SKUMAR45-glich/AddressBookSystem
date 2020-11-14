@@ -5,7 +5,8 @@ using System.Text;
 namespace AddressBookSystem
 {
     public class AddressDetails
-    { 
+    {
+        AddressforSearching addressforSearching = new AddressforSearching();
         public ContactDetails UserValue()
         {
             ContactDetails contactDetails = new ContactDetails();
@@ -21,6 +22,8 @@ namespace AddressBookSystem
             string state = Console.ReadLine();
             string phoneNumber = Console.ReadLine();
             string email = Console.ReadLine();
+
+            addressforSearching.addToState(contactDetails);
 
             return new ContactDetails(firstName, lastName, address, city, state, phoneNumber, email);
         }
