@@ -31,7 +31,7 @@ namespace AddressBookSystem
                 
             }
 
-            /*Console.WriteLine("Enter the Name of Person to Edit\n");
+            Console.WriteLine("Enter the Name of Person to Edit\n");
             string firstName = Console.ReadLine();
 
             if(addressRecord.contactDetails.ContainsKey(firstName))
@@ -49,11 +49,11 @@ namespace AddressBookSystem
             {
                 Console.WriteLine("No Records Found");
             }
-            */
+            
 
             Console.WriteLine("Enter FirstName to be deleted\n");
             Console.WriteLine("Enter the Name of Person to Deleted\n");
-            string firstName = Console.ReadLine();
+            //string firstName = Console.ReadLine();
 
             if (addressRecord.contactDetails.ContainsKey(firstName))
             {
