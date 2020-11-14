@@ -6,6 +6,7 @@ namespace AddressBookSystem
 {
     public class AddressRecord
     {
+        string addressName;
         public Dictionary<string, ContactDetails> contactDetails = new Dictionary<string, ContactDetails>();
         public int totalContacts { get; set; }
 
@@ -13,6 +14,8 @@ namespace AddressBookSystem
         {
 
         }
+
+        public string name { get => addressName; set =>addressName = value; }
 
         public void AddContact(ContactDetails contactDetails)
         {

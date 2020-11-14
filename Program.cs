@@ -1,74 +1,131 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AddressBookSystem
 {
     public class Program
     {
+        public Dictionary<string, AddressRecord> addressBook = new Dictionary<string, AddressRecord>();
+    
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome To AddressBook System");
 
             bool flag = true;
+            bool flagContact = true;
 
             AddressRecord addressRecord = new AddressRecord();
             AddressDetails addressDetails = new AddressDetails();
 
             while (flag)
             {
-                
-                var contact = addressDetails.UserValue();
-                addressRecord.AddContact(contact);
+                Console.WriteLine("Chose an Option:\n" +
+                    "Create New Address Book" + addressRecord.name + "\n"+
+                    "Exit");
 
+                int userChoice = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("Do you want to Enter more Y for Yes N for No:\n");
-                char choice = Convert.ToChar(Console.ReadLine());
-
-                if(choice == 'N')
+                switch(userChoice)
                 {
-                    addressRecord.Display(contact);
-                    flag = false;
+                    case 1:
+                        flagContact = true;
+                        Console.WriteLine("Add Name of new Address Book\n");
+                        addressRecord.name = Console.ReadLine();
+                        break;
+
+                    case 0:
+                        flagContact = false;
+                        flag = false;
+                        break;
+
+                    default:
+                        break;
                 }
-                
-            }
 
-            Console.WriteLine("Enter the Name of Person to Edit\n");
-            string firstName = Console.ReadLine();
+                while(flagContact ==true)
+                {
+                    Console.WriteLine("Enter\n" +
+                    "1 : Add Contact Details to " + addressRecord.name + " Address Book\n" +
+                    "2 : Edit a Contact Detail\n" +
+                    "3 : Delete a Contact Detail\n" +
+                    "4 : Exit");
 
-            if(addressRecord.contactDetails.ContainsKey(firstName))
-            {
-                var contactToEdit =addressRecord.contactDetails[firstName];
-                addressRecord.Display(contactToEdit);
+                    int choice = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("Enter the new values");
-                var contact = addressDetails.UserValue();
-                addressRecord.EditContact(firstName, contact);
-                addressRecord.Display(contact);
-            }
+                    switch(choice)
+                    {
+                        case 1:
+                            Console.WriteLine("Enter Details");
+                            var contact = addressDetails.UserValue();
+                            addressRecord.AddContact(contact);
 
-            else
-            {
-                Console.WriteLine("No Records Found");
-            }
-            
+                            Console.WriteLine("Do you want to Enter more Y for Yes N for No:\n");
+                            char c = Convert.ToChar(Console.ReadLine());
 
-            Console.WriteLine("Enter FirstName to be deleted\n");
-            Console.WriteLine("Enter the Name of Person to Deleted\n");
-            //string firstName = Console.ReadLine();
+                            if (c == 'N')
+                            {
+                                addressRecord.Display(contact);
+                                break;
+                            }
+                            continue;
 
-            if (addressRecord.contactDetails.ContainsKey(firstName))
-            {
-                var contactToDelete = addressRecord.contactDetails[firstName];
-                Console.WriteLine("Data before Deletion");
-                addressRecord.Display(contactToDelete);
+                        case 2:
 
-                Console.WriteLine("Data After Deletion");
-                addressRecord.DeleteContact(firstName, contactToDelete);
-                addressRecord.Display(contactToDelete);
-            }
+                            Console.WriteLine("Enter the Name of Person to Edit\n");
+                            string firstName = Console.ReadLine();
 
-            else
-            {
-                Console.WriteLine("No Records Found");
+                            if (addressRecord.contactDetails.ContainsKey(firstName))
+                            {
+                                var contactToEdit = addressRecord.contactDetails[firstName];
+                                addressRecord.Display(contactToEdit);
+
+                                Console.WriteLine("Enter the new values");
+                                var contactEdit = addressDetails.UserValue();
+                                addressRecord.EditContact(firstName, contactEdit);
+                                addressRecord.Display(contactEdit);
+                                break;
+                            }
+
+                            else
+                            {
+                                Console.WriteLine("No Records Found");
+                                break;
+                            }
+
+                        case 3:
+
+                            Console.WriteLine("Enter the FirstName of Person to Deleted\n");
+                            firstName = Console.ReadLine();
+
+                            if (addressRecord.contactDetails.ContainsKey(firstName))
+                            {
+                                var contactToDelete = addressRecord.contactDetails[firstName];
+                                Console.WriteLine("Data before Deletion");
+                                addressRecord.Display(contactToDelete);
+
+                                Console.WriteLine("Data After Deletion");
+                                addressRecord.DeleteContact(firstName, contactToDelete);
+                                addressRecord.Display(contactToDelete);
+
+                                break;
+                            }
+
+                            else
+                            {
+                                Console.WriteLine("No Records Found");
+                                break;
+                            }
+
+                        case 4:
+                            flag = false;
+                            break;
+
+                        default:
+                            Console.WriteLine("Enter Correct Option");
+                            break;
+
+                    }
+                }  
             }
         }
     }
