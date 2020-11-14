@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AddressBookSystem
 {
     public class AddressRecord
     {
-        AddressforSearching addressforSearching = new AddressforSearching();
         
         string addressName;
         public Dictionary<string, ContactDetails> contactDetails = new Dictionary<string, ContactDetails>();
@@ -15,7 +15,7 @@ namespace AddressBookSystem
 
         public AddressRecord()
         {
-
+            
         }
 
         public string name { get => addressName; set =>addressName = value; }
@@ -63,7 +63,14 @@ namespace AddressBookSystem
             Console.WriteLine($"PhoneNumber {contactDetails.phoneNumber}");
             Console.WriteLine($"Email {contactDetails.email}");
 
-            
+        }
+
+        public void SortPersonByName()
+        {
+           foreach(KeyValuePair<string, ContactDetails> sortByName in contactDetails.OrderBy(key=>key.Key))
+            {
+                Console.WriteLine($"Sorted Name {sortByName.Key}");
+            }
         }
     }
 }

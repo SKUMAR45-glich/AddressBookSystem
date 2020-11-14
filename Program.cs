@@ -71,6 +71,10 @@ namespace AddressBookSystem
                             addressFunction.searchState();
                             break;
 
+                        case 5:
+                            addressRecord.SortPersonByName();
+                            break;
+
 
                         case 0:
                             flagContact = false;
