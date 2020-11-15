@@ -6,101 +6,135 @@ namespace AddressBookSystem
     public class Program
     {
         public Dictionary<string, AddressRecord> addressBook = new Dictionary<string, AddressRecord>();
+
     
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome To AddressBook System");
 
-            bool flag = true;
-            bool flagContact = true;
+            Console.WriteLine("Enter your choice" +
+                "1. To Enter into Normal AddressBook " +
+                "2. To Enter into Ado.net AddressBook");
 
-            AddressRecord addressRecord = new AddressRecord();
-            AddressFunction addressFunction = new AddressFunction();
+            int flag = Convert.ToInt32(Console.ReadLine());
 
-            while (flag)
+            if(flag == 1)
             {
-                Console.WriteLine("Chose an Option:\n" +
-                    "Create New Address Book" + addressRecord.name + "\n"+
-                    "Exit");
+                bool flagContact = true;
 
-                int userChoice = Convert.ToInt32(Console.ReadLine());
+                AddressRecord addressRecord = new AddressRecord();
+                AddressFunction addressFunction = new AddressFunction();
 
-                switch(userChoice)
+                while (flag == 1)
                 {
-                    case 1:
-                        flagContact = true;
-                        Console.WriteLine("Add Name of new Address Book\n");
-                        addressRecord.name = Console.ReadLine();
-                        break;
+                    Console.WriteLine("Chose an Option:\n" +
+                        "Create New Address Book" + addressRecord.name + "\n" +
+                        "Exit");
 
-                    case 0:
-                        flagContact = false;
-                        flag = false;
-                        break;
+                    int userChoice = Convert.ToInt32(Console.ReadLine());
 
-                    default:
-                        break;
-                }
-
-                while(flagContact ==true)
-                {
-                    Console.WriteLine("Enter\n" +
-                    "1 : Add Contact Details to " + addressRecord.name + " Address Book\n" +
-                    "2 : Edit a Contact Detail\n" +
-                    "3 : Delete a Contact Detail\n" +
-                    "4 : Exit");
-
-                    int choice = Convert.ToInt32(Console.ReadLine());
-
-                    switch(choice)
+                    switch (userChoice)
                     {
                         case 1:
-                            addressFunction.AddContactDetails();
-                            break;
-
-                        case 2:
-                            addressFunction.EditContactDetails();
-                            break;
-                            
-
-                        case 3:
-                            addressFunction.DeleteContactDetails();
-                            break;
-                            
-                        case 4:
-                            addressFunction.searchState();
-                            break;
-
-                        case 5:
-                            addressRecord.SortPersonByName();
-                            break;
-
-                        case 6:
-                            addressFunction.searchState();
-                            break;
-
-                        case 7:
-                            addressRecord.ReadorWriteinFile();
-                            break;
-
-                        case 8:
-                            addressRecord.ReadorWriteinCSVFile();
-                            break;
-
-                        case 9:
-                            addressRecord.ReadorWriteinJSONFile();
+                            flagContact = true;
+                            Console.WriteLine("Add Name of new Address Book\n");
+                            addressRecord.name = Console.ReadLine();
                             break;
 
                         case 0:
                             flagContact = false;
+                            flag = 0;
                             break;
 
                         default:
-                            Console.WriteLine("Enter Correct Option");
                             break;
-
                     }
-                }  
+
+                    while (flagContact == true)
+                    {
+                        Console.WriteLine("Enter\n" +
+                        "1 : Add Contact Details to " + addressRecord.name + " Address Book\n" +
+                        "2 : Edit a Contact Detail\n" +
+                        "3 : Delete a Contact Detail\n" +
+                        "4 : Exit");
+
+                        int choice = Convert.ToInt32(Console.ReadLine());
+
+                        switch (choice)
+                        {
+                            case 1:
+                                addressFunction.AddContactDetails();
+                                break;
+
+                            case 2:
+                                addressFunction.EditContactDetails();
+                                break;
+
+
+                            case 3:
+                                addressFunction.DeleteContactDetails();
+                                break;
+
+                            case 4:
+                                addressFunction.searchState();
+                                break;
+
+                            case 5:
+                                addressRecord.SortPersonByName();
+                                break;
+
+                            case 6:
+                                addressFunction.searchState();
+                                break;
+
+                            case 7:
+                                addressRecord.ReadorWriteinFile();
+                                break;
+
+                            case 8:
+                                addressRecord.ReadorWriteinCSVFile();
+                                break;
+
+                            case 9:
+                                addressRecord.ReadorWriteinJSONFile();
+                                break;
+
+                            case 0:
+                                flagContact = false;
+                                break;
+
+                            default:
+                                Console.WriteLine("Enter Correct Option");
+                                break;
+
+                        }
+                    }
+                }
+            }
+            
+            else if(flag == 2)
+            {
+
+                AddressDetailsforSQLqueries addressDetailsforSQLqueries = new AddressDetailsforSQLqueries();
+
+                Console.WriteLine("Welcome To the Database Program of AddressBook");
+
+                int choice = Convert.ToInt32(Console.ReadLine());
+                
+                switch(choice)
+                {
+                    case 1:
+                        addressDetailsforSQLqueries.GetAllDetails();
+                        break;
+                    case 0:
+                        flag = 0;
+                        break;
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("Please Enter correct Option");
             }
         }
     }

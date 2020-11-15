@@ -209,7 +209,7 @@ namespace AddressBookSystem
             {
                 case 1:
 
-                    string path = @"C:\Users\saura\Desktop\Training\Pending\AddressBookSystem\AddressBookSystem\AddressBookSystem\ExampleCSV.csv";
+                    string path = @"C:\Users\saura\Desktop\Training\Pending\AddressBookSystem\AddressBookSystem\AddressBookSystem\ExampleJSON.json";
 
                     var contact = JsonConvert.DeserializeObject<List<KeyValuePair<string, ContactDetails>>>(File.ReadAllText(path));
                     foreach(var i in contact)
@@ -222,7 +222,7 @@ namespace AddressBookSystem
 
                 case 2:
 
-                    path = @"C:\Users\saura\Desktop\Training\Pending\AddressBookSystem\AddressBookSystem\AddressBookSystem\ExampleCSV.csv";
+                    path = @"C:\Users\saura\Desktop\Training\Pending\AddressBookSystem\AddressBookSystem\AddressBookSystem\ExampleJSON.json";
 
                     var list = contactDetails.ToList();
                     var copy = new List<ContactDetails>();
