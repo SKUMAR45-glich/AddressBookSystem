@@ -82,6 +82,11 @@ namespace AddressBookSystem
                         case 7:
                             addressRecord.ReadorWriteinFile();
                             break;
+
+                        case 8:
+                            addressRecord.ReadorWriteinCSVFile();
+                            break;
+
                         case 0:
                             flagContact = false;
                             break;

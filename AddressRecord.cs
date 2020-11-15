@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -126,6 +128,62 @@ namespace AddressBookSystem
                             streamWriter.WriteLine(item.Value.firstName);
                         }
                         streamWriter.Close();
+                    }
+                    break;
+
+                case 0:
+                    break;
+
+                default:
+                    Console.WriteLine("Please Enter Correct Option");
+                    break;
+            }
+        }
+
+        public void ReadorWriteinCSVFile()
+        {
+            Console.WriteLine("1. Read the CSV file" +
+                "2. Write in the SCV File" +
+                "0. Exit");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+
+                    string path = @"C:\Users\saura\Desktop\Training\Pending\AddressBookSystem\AddressBookSystem\AddressBookSystem\ExampleCSV.csv";
+
+                    if (!File.Exists(path))
+                    {
+                        Console.WriteLine("No such File Exists");
+                        break;
+                    }
+
+                    using (var reader = new StreamReader(path))
+                    using (var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture))
+                    {
+                        var contacts = csvReader.GetRecords<ContactDetails>().ToList();
+                        
+                        foreach(var contact in contacts)
+                        {
+                            Display(contact);
+                        }
+
+                    }
+                    break;
+
+
+
+                case 2:
+
+                    path = @"C:\Users\saura\Desktop\Training\Pending\AddressBookSystem\AddressBookSystem\AddressBookSystem\ExampleCSV.csv";
+
+                    using (var reader = new StreamReader(path))
+                    using (var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture))
+                    {
+                        var items = contactDetails[name];
+                        Console.WriteLine(items);
                     }
                     break;
 
