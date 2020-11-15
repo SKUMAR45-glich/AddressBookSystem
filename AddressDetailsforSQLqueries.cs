@@ -48,5 +48,49 @@ namespace AddressBookSystem
                 connection.Close();
             }
         }
+
+        public bool addAddressDetails()
+        {
+            AddressModelforSQL addressModelforSQL = new AddressModelforSQL();
+            try
+            {
+                using (this.connection)
+                {
+                    SqlCommand command = new SqlCommand("SpAddAddressDetails", this.connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@FirstName", addressModelforSQL.firstName);
+                    command.Parameters.AddWithValue("@LastName", addressModelforSQL.lastName);
+                    command.Parameters.AddWithValue("@Address", addressModelforSQL.address);
+                    command.Parameters.AddWithValue("@City", addressModelforSQL.city);
+                    command.Parameters.AddWithValue("@State", addressModelforSQL.state);
+                    command.Parameters.AddWithValue("@Zip", addressModelforSQL.zip);
+                    command.Parameters.AddWithValue("@PhoneNumber", addressModelforSQL.phoneNumber);
+                    command.Parameters.AddWithValue("@Email", addressModelforSQL.email);
+                    command.Parameters.AddWithValue("@ContactName", addressModelforSQL.contactName);
+                    command.Parameters.AddWithValue("@ContactType", addressModelforSQL.contactType);
+
+                    this.connection.Open();
+                    var result = command.ExecuteNonQuery();
+                    this.connection.Close();
+                    if (result != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+            return false;
+        }
     }
+
+
+    
 }

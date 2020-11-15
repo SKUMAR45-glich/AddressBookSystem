@@ -126,6 +126,11 @@ namespace AddressBookSystem
                     case 1:
                         addressDetailsforSQLqueries.GetAllDetails();
                         break;
+
+                    case 2:
+                        addressDetailsforSQLqueries.addAddressDetails();
+                        break;
+
                     case 0:
                         flag = 0;
                         break;
