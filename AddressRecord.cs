@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -78,6 +79,62 @@ namespace AddressBookSystem
             foreach (KeyValuePair<string, ContactDetails> sortByCity in contactDetails.OrderBy(key => key.Value.city))
             {
                 Console.WriteLine($"Sorted Cities {sortByCity.Value.city}");
+            }
+        }
+
+        public void ReadorWriteinFile()
+        {
+            Console.WriteLine("1. Read the text file" +
+                "2. Write in the Text File" +
+                "0. Exit");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch(choice)
+            {
+                case 1:
+
+                    string path = @"C:\Users\saura\Desktop\Training\Pending\AddressBookSystem\AddressBookSystem\AddressBookSystem.txt";
+
+                    if(!File.Exists(path))
+                    {
+                        Console.WriteLine("No such File Exists");
+                        break;
+                    }
+
+                    using (var streamReader = File.OpenText(path))
+                    {
+                        string str = "";
+
+                        while((str = streamReader.ReadLine()) != null)
+                        {
+                            Console.WriteLine(str);
+                        }
+                        break;
+                    }
+
+
+
+                case 2:
+
+                    path = @"C:\Users\saura\Desktop\Training\Pending\AddressBookSystem\AddressBookSystem\AddressBookSystem.txt";
+
+                    using(var streamWriter = File.AppendText(path))
+                    {
+                        foreach(var item in contactDetails)
+                        {
+                            streamWriter.WriteLine(item.Value.firstName);
+                        }
+                        streamWriter.Close();
+                    }
+                    break;
+
+                case 0:
+                    break;
+
+                default:
+                    Console.WriteLine("Please Enter Correct Option");
+                    break;
             }
         }
     }

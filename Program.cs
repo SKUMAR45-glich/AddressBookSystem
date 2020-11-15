@@ -76,9 +76,12 @@ namespace AddressBookSystem
                             break;
 
                         case 6:
-                            addressRecord.SortPersonByCity();
+                            addressFunction.searchState();
                             break;
 
+                        case 7:
+                            addressRecord.ReadorWriteinFile();
+                            break;
                         case 0:
                             flagContact = false;
                             break;
