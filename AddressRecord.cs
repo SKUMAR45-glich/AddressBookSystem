@@ -1,4 +1,5 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -185,6 +186,58 @@ namespace AddressBookSystem
                         var items = contactDetails[name];
                         Console.WriteLine(items);
                     }
+                    break;
+
+                case 0:
+                    break;
+
+                default:
+                    Console.WriteLine("Please Enter Correct Option");
+                    break;
+            }
+        }
+
+        public void ReadorWriteinJSONFile()
+        {
+            Console.WriteLine("1. Read the JSON file" +
+                "2. Write in the JSON File" +
+                "0. Exit");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+
+                    string path = @"C:\Users\saura\Desktop\Training\Pending\AddressBookSystem\AddressBookSystem\AddressBookSystem\ExampleCSV.csv";
+
+                    var contact = JsonConvert.DeserializeObject<List<KeyValuePair<string, ContactDetails>>>(File.ReadAllText(path));
+                    foreach(var i in contact)
+                    {
+                        Display(i.Value);
+                    }    
+
+                    break;
+
+
+                case 2:
+
+                    path = @"C:\Users\saura\Desktop\Training\Pending\AddressBookSystem\AddressBookSystem\AddressBookSystem\ExampleCSV.csv";
+
+                    var list = contactDetails.ToList();
+                    var copy = new List<ContactDetails>();
+                    foreach(var item in list)
+                    {
+                        copy.Add(item.Value);
+                    }
+                    
+                    var serializeObject = new JsonSerializer();
+                    using(var streamWriter = new StreamWriter(path))
+                    using(var jsonWriteObject = new JsonTextWriter(streamWriter))
+                    {
+                        serializeObject.Serialize(jsonWriteObject, copy);
+                    }
+                    
                     break;
 
                 case 0:

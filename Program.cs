@@ -87,6 +87,10 @@ namespace AddressBookSystem
                             addressRecord.ReadorWriteinCSVFile();
                             break;
 
+                        case 9:
+                            addressRecord.ReadorWriteinJSONFile();
+                            break;
+
                         case 0:
                             flagContact = false;
                             break;
