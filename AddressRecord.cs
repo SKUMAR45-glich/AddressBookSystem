@@ -24,12 +24,16 @@ namespace AddressBookSystem
 
         public string name { get => addressName; set =>addressName = value; }
 
+
+        //To Add Contact Details in AddressBook
         public void AddContact(ContactDetails contactDetails)
         {
             this.contactDetails.Add(contactDetails.firstName,contactDetails);
             totalContacts = this.contactDetails.Count;
         }
 
+
+        //To Edit Contact Details in AddressBook
         public void EditContact(string firstName, ContactDetails contactDetails)
         {
             if(firstName == contactDetails.firstName)
@@ -43,6 +47,7 @@ namespace AddressBookSystem
         }
 
 
+        //To Delete Contact Details in AddressBook
         public void DeleteContact(string firstName, ContactDetails contactDetails)
         {
             if (!this.contactDetails.ContainsKey(firstName))
@@ -56,6 +61,7 @@ namespace AddressBookSystem
         }
 
 
+        //To Display Contact Details in AddressBook
         public void Display(ContactDetails contactDetails)
         {
             Console.WriteLine($"First Name {contactDetails.firstName}");
@@ -69,6 +75,9 @@ namespace AddressBookSystem
 
         }
 
+
+
+        //To Sort PersonByName
         public void SortPersonByName()
         {
            foreach(KeyValuePair<string, ContactDetails> sortByName in contactDetails.OrderBy(key=>key.Key))
@@ -77,6 +86,8 @@ namespace AddressBookSystem
             }
         }
 
+
+        //To Sort CityByName
         public void SortPersonByCity()
         {
             foreach (KeyValuePair<string, ContactDetails> sortByCity in contactDetails.OrderBy(key => key.Value.city))
@@ -85,6 +96,8 @@ namespace AddressBookSystem
             }
         }
 
+
+        //Reading and Writing in Text
         public void ReadorWriteinFile()
         {
             Console.WriteLine("1. Read the text file" +
@@ -141,6 +154,8 @@ namespace AddressBookSystem
             }
         }
 
+
+        //Reading and Writing in CSV File
         public void ReadorWriteinCSVFile()
         {
             Console.WriteLine("1. Read the CSV file" +
@@ -197,6 +212,10 @@ namespace AddressBookSystem
             }
         }
 
+
+
+
+        //Reading and Writing in JSON File
         public void ReadorWriteinJSONFile()
         {
             Console.WriteLine("1. Read the JSON file" +

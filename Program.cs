@@ -5,6 +5,7 @@ namespace AddressBookSystem
 {
     public class Program
     {
+        //Dictionary for AddressRecord
         public Dictionary<string, AddressRecord> addressBook = new Dictionary<string, AddressRecord>();
 
     
@@ -18,24 +19,26 @@ namespace AddressBookSystem
 
             int flag = Convert.ToInt32(Console.ReadLine());
 
+
+            //Process for AddressRecord Manual Insertion from User
             if(flag == 1)
             {
                 bool flagContact = true;
 
-                AddressRecord addressRecord = new AddressRecord();
-                AddressFunction addressFunction = new AddressFunction();
+                AddressRecord addressRecord = new AddressRecord();                                   //Address Record Class
+                AddressFunction addressFunction = new AddressFunction();                             //Address Function Class
 
                 while (flag == 1)
                 {
                     Console.WriteLine("Chose an Option:\n" +
-                        "Create New Address Book" + addressRecord.name + "\n" +
+                        "Create New Address Book" + addressRecord.name + "\n" +                       
                         "Exit");
 
                     int userChoice = Convert.ToInt32(Console.ReadLine());
 
                     switch (userChoice)
                     {
-                        case 1:
+                        case 1:                                                                     //Creation of AddressBook
                             flagContact = true;
                             Console.WriteLine("Add Name of new Address Book\n");
                             addressRecord.name = Console.ReadLine();
@@ -63,40 +66,40 @@ namespace AddressBookSystem
                         switch (choice)
                         {
                             case 1:
-                                addressFunction.AddContactDetails();
+                                addressFunction.AddContactDetails();                                      //Addition of Contact Details to AddressBook
                                 break;
 
                             case 2:
-                                addressFunction.EditContactDetails();
+                                addressFunction.EditContactDetails();                                     //Edition of Contact Details to AddressBook
                                 break;
 
 
                             case 3:
-                                addressFunction.DeleteContactDetails();
+                                addressFunction.DeleteContactDetails();                                   //Deletion of Contact Details to AddressBook
                                 break;
 
                             case 4:
-                                addressFunction.searchState();
+                                addressFunction.searchState();                                            //Searching of Contact with State to AddressBook
                                 break;
 
                             case 5:
-                                addressRecord.SortPersonByName();
+                                addressRecord.SortPersonByName();                                        //Sorting of Contact Name in AddressBook
                                 break;
 
                             case 6:
-                                addressFunction.searchState();
+                                addressFunction.searchState();                                           //Count of Contact Details to AddressBook
                                 break;
 
                             case 7:
-                                addressRecord.ReadorWriteinFile();
+                                addressRecord.ReadorWriteinFile();                                      //Read Write in Text Contact Details to AddressBook
                                 break;
 
                             case 8:
-                                addressRecord.ReadorWriteinCSVFile();
+                                addressRecord.ReadorWriteinCSVFile();                                  //Read Write in CSV Contact Details to AddressBook
                                 break;
 
                             case 9:
-                                addressRecord.ReadorWriteinJSONFile();
+                                addressRecord.ReadorWriteinJSONFile();                                 //Read Write in JSON Contact Details to AddressBook
                                 break;
 
                             case 0:
@@ -112,6 +115,8 @@ namespace AddressBookSystem
                 }
             }
             
+
+            //Process of AddressBook insertion With DBMS
             else if(flag == 2)
             {
                 AddressFunction addressFunction = new AddressFunction();
@@ -124,28 +129,28 @@ namespace AddressBookSystem
                 switch(choice)
                 {
                     case 1:
-                        addressDetailsforSQLqueries.GetAllDetails();
+                        addressDetailsforSQLqueries.GetAllDetails();                         //Get All Details from Database
                         break;
 
                     case 2:
-                        addressDetailsforSQLqueries.addAddressDetails();
+                        addressDetailsforSQLqueries.addAddressDetails();                     //Add Details to contact in Database
                         break;
 
                     case 3:
-                        addressFunction.DataintheDateRange();
+                        addressFunction.DataintheDateRange();                               //Retrieve Data through DataRange
                         break;
 
                     case 4:
-                        addressFunction.countDataintheState();
+                        addressFunction.countDataintheState();                             //Count data in the State
                         break;
 
                     case 5:
-                        addressFunction.addContactinAddressBook();
+                        addressFunction.addContactinAddressBook();                         //Addition of Contact in AddressBook
                         break;
 
                     case 0:
-                        flag = 0;
                         break;
+
                 }
             }
 

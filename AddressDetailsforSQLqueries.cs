@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AddressBookSystem
 {
@@ -131,7 +132,76 @@ namespace AddressBookSystem
 
             return dataSet;
         }
+
+        public void addContactinAddressDetails(ContactDetails contactDetails)
+        {
+            try
+            {
+                using (this.connection)
+                {
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = @"insert into AddressBookSystem values(@FirstName,@LastName,@Address,@City,@State,@PhoneNumber,@Email)";
+                    command.Parameters.AddWithValue("@FirstName", contactDetails.firstName);
+                    command.Parameters.AddWithValue("@LastName", contactDetails.lastName);
+                    command.Parameters.AddWithValue("@Address", contactDetails.address);
+                    command.Parameters.AddWithValue("@City", contactDetails.city);
+                    command.Parameters.AddWithValue("@State", contactDetails.state);
+                    command.Parameters.AddWithValue("@PhoneNumber", contactDetails.phoneNumber);
+                    command.Parameters.AddWithValue("@Email", contactDetails.email);
+                    
+
+                    this.connection.Open();
+                    command.ExecuteNonQuery();
+                    
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+        }
+
+        public bool addingMultipleContactWithoutThread(List<ContactDetails> contactDetails)
+        {
+            try
+            {
+                contactDetails.ForEach(contact =>
+                {
+                    addContactinAddressDetails(contact);
+                });
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool addingMultipleContactWithThread(List<ContactDetails> contactDetails)
+        {
+            try
+            {
+                contactDetails.ForEach(contact =>
+                {
+                    Task thread = new Task(() =>
+                    {
+                        addContactinAddressDetails(contact);
+                    });
+                    thread.Start();
+                    
+                });
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 
-    
+
 }

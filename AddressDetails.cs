@@ -7,7 +7,9 @@ namespace AddressBookSystem
     public class AddressDetails
     {
         AddressforSearching addressforSearching = new AddressforSearching();
-        public ContactDetails UserValue()
+
+
+        public ContactDetails UserValue()                                            //Input Contact Details in AddressBook
         {
             ContactDetails contactDetails = new ContactDetails();
             string firstName = Console.ReadLine();
@@ -23,7 +25,7 @@ namespace AddressBookSystem
             string phoneNumber = Console.ReadLine();
             string email = Console.ReadLine();
 
-            addressforSearching.addToState(contactDetails);
+            addressforSearching.addToState(contactDetails);                              
 
             return new ContactDetails(firstName, lastName, address, city, state, phoneNumber, email);
         }
