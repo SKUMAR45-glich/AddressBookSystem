@@ -138,5 +138,14 @@ namespace AddressBookSystem
                 Console.WriteLine(contact.Key + "\t" + contact.Value);
             }
         }
+
+        public void addContactinAddressBook()
+        {
+            AddressDetailsforSQLqueries addressDetailsforSQLqueries = new AddressDetailsforSQLqueries();
+            ContactDetails contactDetails = new ContactDetails("MS","Dhoni","Legacy","Ranchi","Jharkhnad","99999999","msd@gmail.com");
+
+            addressDetailsforSQLqueries.addContactinAddressDetails(contactDetails);
+
+        }
     }
 }

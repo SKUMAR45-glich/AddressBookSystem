@@ -139,6 +139,10 @@ namespace AddressBookSystem
                         addressFunction.countDataintheState();
                         break;
 
+                    case 5:
+                        addressFunction.addContactinAddressBook();
+                        break;
+
                     case 0:
                         flag = 0;
                         break;
