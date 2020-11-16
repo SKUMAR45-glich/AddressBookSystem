@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Data;
 
 namespace AddressBookSystem
 {
@@ -111,6 +112,21 @@ namespace AddressBookSystem
                 Console.WriteLine("No ctact for this state");
             }
             Console.WriteLine($"{values.Count} Conatacts are for {state}");
+        }
+
+        public void DataintheDateRange()
+        {
+            Console.WriteLine("Enter the Starting Date of DateRange");
+            DateTime startDate = Convert.ToDateTime(Console.ReadLine());
+            Console.WriteLine("Enter the End Date of DateRange");
+            DateTime endDate = Convert.ToDateTime(Console.ReadLine());
+
+            List<DataRow> data = AddressDetailsforSQLqueries.ContactDetailsBetweenDateRange(startDate, endDate);
+
+            foreach(DataRow dataRow in data)
+            {
+                Console.WriteLine(dataRow.Field<string>("firstName"));
+            }
         }
     }
 }

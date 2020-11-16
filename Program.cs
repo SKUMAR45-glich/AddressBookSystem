@@ -114,7 +114,7 @@ namespace AddressBookSystem
             
             else if(flag == 2)
             {
-
+                AddressFunction addressFunction = new AddressFunction();
                 AddressDetailsforSQLqueries addressDetailsforSQLqueries = new AddressDetailsforSQLqueries();
 
                 Console.WriteLine("Welcome To the Database Program of AddressBook");
@@ -131,6 +131,10 @@ namespace AddressBookSystem
                         addressDetailsforSQLqueries.addAddressDetails();
                         break;
 
+                    case 3:
+                        addressFunction.DataintheDateRange();
+                        break;
+                    
                     case 0:
                         flag = 0;
                         break;

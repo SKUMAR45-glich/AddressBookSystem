@@ -1,6 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace AddressBookSystem
@@ -89,8 +91,35 @@ namespace AddressBookSystem
             }
             return false;
         }
-    }
 
+        public static List<DataRow> ContactDetailsBetweenDateRange(DateTime startDate, DateTime endDate)
+        {
+            DataSet dataSet = RetrieveDataFromTable();
+
+            var contactInDateRange = from data in dataSet.Tables["AddressBookSystem"].AsEnumerable()
+                                     where data.Field<DateTime>("StartDate") >= startDate
+                                     && data.Field<DateTime>("EndDate") <= endDate
+                                     select data;
+
+            return contactInDateRange.ToList();
+        }
+
+
+        public static DataSet RetrieveDataFromTable()
+        {
+            DataSet dataSet = new DataSet();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(@"select * from AddressBookSystem;");
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                dataAdapter.Fill(dataSet, "AddressBookSystem");
+            }
+
+            return dataSet;
+        }
+    }
 
     
 }
