@@ -17,5 +17,6 @@ namespace AddressBookSystem
         public string email { get; set; }
         public string contactName { get; set; }
         public string contactType { get; set; }
+        public DateTime dateOfJoining { get; set; }
     }
 }

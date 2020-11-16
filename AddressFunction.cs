@@ -128,5 +128,15 @@ namespace AddressBookSystem
                 Console.WriteLine(dataRow.Field<string>("firstName"));
             }
         }
+
+        public void countDataintheState()
+        {
+            Dictionary<string, int> countContactByState = AddressDetailsforSQLqueries.retrieveCountByState();
+            Console.WriteLine("State\tCount");
+            foreach(var contact in countContactByState)
+            {
+                Console.WriteLine(contact.Key + "\t" + contact.Value);
+            }
+        }
     }
 }

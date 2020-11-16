@@ -134,7 +134,11 @@ namespace AddressBookSystem
                     case 3:
                         addressFunction.DataintheDateRange();
                         break;
-                    
+
+                    case 4:
+                        addressFunction.countDataintheState();
+                        break;
+
                     case 0:
                         flag = 0;
                         break;

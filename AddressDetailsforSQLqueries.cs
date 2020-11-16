@@ -58,7 +58,7 @@ namespace AddressBookSystem
             {
                 using (this.connection)
                 {
-                    SqlCommand command = new SqlCommand("SpAddAddressDetails", this.connection);
+                    SqlCommand command = new SqlCommand("SpAddinAddressDetails", this.connection);
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@FirstName", addressModelforSQL.firstName);
                     command.Parameters.AddWithValue("@LastName", addressModelforSQL.lastName);
@@ -70,6 +70,8 @@ namespace AddressBookSystem
                     command.Parameters.AddWithValue("@Email", addressModelforSQL.email);
                     command.Parameters.AddWithValue("@ContactName", addressModelforSQL.contactName);
                     command.Parameters.AddWithValue("@ContactType", addressModelforSQL.contactType);
+                    command.Parameters.AddWithValue("@DateofJoining", addressModelforSQL.dateOfJoining);
+
 
                     this.connection.Open();
                     var result = command.ExecuteNonQuery();
@@ -104,6 +106,16 @@ namespace AddressBookSystem
             return contactInDateRange.ToList();
         }
 
+        public static Dictionary<string,int> retrieveCountByState() 
+        {
+            DataSet dataSet = RetrieveDataFromTable();
+
+            var countofContactsinState = (from data in dataSet.Tables["AddressBookSystem"].AsEnumerable()
+                                      group data by data.Field<string>("state"))
+                                     .ToDictionary(stateData => stateData.Key, stateData => stateData.Count());
+
+            return countofContactsinState;
+        }
 
         public static DataSet RetrieveDataFromTable()
         {
